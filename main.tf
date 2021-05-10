@@ -1,3 +1,7 @@
+provider "aws" {
+  region="us-east-1"
+}
+
 resource "aws_instance" "devops-vm-1" {
   ami="ami-03d64741867e7bb94"
   instance_type="t2.micro"
