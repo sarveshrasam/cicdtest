@@ -12,7 +12,7 @@ pipeline {
 	stages {
 		stage('Git checkout'){
 			steps {
-				git branch: 'main', credentialsId: 'github', url: 'https://github.com/sarveshrasam/cicdtest/tree/main/dev'
+				git branch: 'main', credentialsId: 'github', url: 'https://github.com/sarveshrasam/cicdtest.git'
 			}
 		}
 		
