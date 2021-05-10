@@ -1,6 +1,5 @@
 provider "aws" {
   region="us-east-1"
-  profile = "MyAWS"
 }
 
 module "dev_vpc" {
