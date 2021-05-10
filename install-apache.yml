@@ -1,0 +1,22 @@
+---
+
+  - name: HTTPD Installation
+    hosts: awshosts
+    become: true
+
+    tasks:
+      - name: Installing HTTPD
+        yum:
+          name: "httpd"
+          state: "present"
+      - name: Staring Service
+        service:
+          name: "httpd"
+          state: "started"
+          enabled: "true"
+      - name: Deploy Static Website
+        copy:
+          src: /devops/ansible/files/index.html
+          dest: /var/www/html/
+
+...
