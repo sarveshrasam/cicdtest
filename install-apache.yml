@@ -2,6 +2,7 @@
 
   - name: HTTPD Installation
     hosts: awshosts
+    gather_facts: no
     become: true
 
     tasks:
