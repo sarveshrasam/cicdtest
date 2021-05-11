@@ -15,6 +15,18 @@ pipeline {
                                 git branch: 'main', credentialsId: 'github', url: 'https://github.com/sarveshrasam/cicdtest.git'
                         }
                 }
+
+                stage('Terraform init'){
+                        steps {
+                                sh label: '', script: 'terraform init'
+                        }
+                }
+
+                stage('Terraform apply'){
+                        steps {
+                                sh label: '', script: 'terraform apply --auto-approve'
+                        }
+                }
 				
 		stage('Execute Ansible'){
 			steps {

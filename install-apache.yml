@@ -5,18 +5,35 @@
     become: true
 
     tasks:
+      - name: Wait for the reboot and reconnect
+        wait_for:
+          port: 22
+          host: '{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}'
+          search_regex: OpenSSH
+          delay: 10
+          timeout: 600
+        connection: local
+
+      - name: Check the Uptime of the servers
+        shell: "uptime"
+        register: Uptime
+
       - name: Installing HTTPD
         yum:
           name: "httpd"
           state: "present"
+
       - name: Staring Service
         service:
           name: "httpd"
           state: "started"
           enabled: "true"
+
       - name: Deploy Static Website
         copy:
           src: /devops/ansible/files/index.html
           dest: /var/www/html/
+
+      - debug: var=Uptime
 
 ...
