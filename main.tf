@@ -13,3 +13,7 @@ resource "aws_instance" "devops-vm-1" {
     Name = "LB-INSTANCE-1"
   }
 }
+
+output "pubid" {
+  value = "${aws_instance.devops-vm-1.public_ip}"
+}
