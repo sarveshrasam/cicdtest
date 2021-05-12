@@ -11,13 +11,6 @@ resource "aws_instance" "devops-vm-1" {
   tags = {
     Name = "LB-INSTANCE-1"
   }
-  provisioner "local-exec" {
-      # method 1: construct inventory from terraform state
-      #command = "sleep 60; ansible-playbook -i '${aws_instance.devops-vm-1.public_dns},' key-transfer.yml"
-
-      # method 2: use terraform-inventory dynamic inventory script https://github.com/adammck/terraform-inventory
-      # command = "sleep 90; ansible-playbook -i /usr/local/bin/terraform-inventory install-webserver.yml"
-  }
 }
 
 output "pubid" {
