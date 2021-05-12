@@ -1,6 +1,6 @@
 provider "aws" {
-  access_key = "AKIAWTMLN3X3SA5X7IGZ"
-  secret_key = "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"
+  access_key = "AKIAWTMLN3X3QI2H73E4"
+  secret_key = "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"
   region="us-east-1"
 }
 
@@ -10,9 +10,15 @@ resource "aws_instance" "devops-vm-1" {
   availability_zone="us-east-1a"
   associate_public_ip_address = "true"
   key_name = "KP_MARCH_2021"
-  user_data = "${file("userdata.sh")}"
   tags = {
     Name = "LB-INSTANCE-1"
+  }
+  provisioner "local-exec" {
+      # method 1: construct inventory from terraform state
+      command = "sleep 60; ansible-playbook -i '${aws_instance.terraform-ansible.public_dns},' key-transfer.yml"
+
+      # method 2: use terraform-inventory dynamic inventory script https://github.com/adammck/terraform-inventory
+      # command = "sleep 90; ansible-playbook -i /usr/local/bin/terraform-inventory install-webserver.yml"
   }
 }
 
