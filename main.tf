@@ -1,6 +1,4 @@
 provider "aws" {
-  access_key = "AKIAWTMLN3X3QI2H73E4"
-  secret_key = "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"
   region="us-east-1"
 }
 
@@ -15,7 +13,7 @@ resource "aws_instance" "devops-vm-1" {
   }
   provisioner "local-exec" {
       # method 1: construct inventory from terraform state
-      command = "sleep 60; ansible-playbook -i '${aws_instance.terraform-ansible.public_dns},' key-transfer.yml"
+      #command = "sleep 60; ansible-playbook -i '${aws_instance.devops-vm-1.public_dns},' key-transfer.yml"
 
       # method 2: use terraform-inventory dynamic inventory script https://github.com/adammck/terraform-inventory
       # command = "sleep 90; ansible-playbook -i /usr/local/bin/terraform-inventory install-webserver.yml"
