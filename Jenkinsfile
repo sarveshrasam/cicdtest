@@ -2,7 +2,9 @@ pipeline{
 	agent any
 	stages{
 		stage('SCM Checkout'){
-			git branch: 'main', credentialsId: 'github', url: 'https://github.com/sarveshrasam/cicdtest.git'
+                        steps{
+				git branch: 'main', credentialsId: 'github', url: 'https://github.com/sarveshrasam/cicdtest.git'
+			}
 		}
 		stage('Execute Ansible'){
 			steps{
