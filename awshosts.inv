@@ -1,4 +1,4 @@
 ## AWS Hosts
 
 [awshosts]
-ec2-3-239-195-27.compute-1.amazonaws.com ansible_user=ec2-user
+54.160.181.45
